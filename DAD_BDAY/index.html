@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, Dad!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      color: white;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    /* ===== SLIDESHOW ===== */
+    #slideshow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.65;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .slide.active {
+      opacity: 1;
+    }
+
+    /* ===== FLOATING HEARTS ===== */
+    .hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    .heart {
+      position: absolute;
+      color: #ff66cc;
+      opacity: 0;
+      animation: float 12s infinite ease-in;
+      font-size: clamp(12px, 3.5vw, 24px);
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: clamp(5rem, 18vw, 10rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ff66cc, #ffcc66);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(255, 102, 204, 0.5);
+      animation: glow 3s infinite alternate;
+    }
+
+    .subtitle {
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      max-width: 800px;
+      margin: 0 auto 30px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #ff66cc, #ff3366);
+      color: white;
+      border: none;
+      padding: 16px 48px;
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(255, 102, 204, 0.5);
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 102, 204, 0.7);
+    }
+
+    /* ===== FLOATING MESSAGE ===== */
+    /* ===== FLOATING MESSAGE ===== */
+    /* ===== FLOATING MESSAGE ===== */
+#floating-message {
+  position: fixed;
+  left: 5vw;
+  right: 5vw;
+  max-width: 800px;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* iOS support */
+  border-radius: 18px;
+  color: white;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.7;
+  text-align: left;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 70vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* ✅ Critical for iOS momentum scroll */
+  margin: 0 auto; /* centers without transform */
+}
+    .highlight {
+      color: #ffcc66;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Slideshow -->
+  <div id="slideshow"></div>
+
+  <!-- Hero -->
+  <div id="hero">
+    <h1>HAPPY BIRTHDAY,<br>DAD!</h1>
+    <p class="subtitle">From your son, Manjil ❤️</p>
+    <button class="btn" onclick="startExperience()">✨ Begin Celebration</button>
+  </div>
+
+  <!-- Floating Message (initially hidden) -->
+  <div id="floating-message">
+    💐 <strong>Happy Birthday, Dad!</strong> 💐<br><br>
+
+    Even though miles separate us today, not a single moment goes by without thinking of you and feeling your love and strength guiding us. You may be far away, but your presence is always here in everything we do — in our smiles, our meals, and even the little things that remind us of your care.<br><br>
+
+    Dad, you’ve sacrificed so much to give our family a better life. You work so hard in a distant land just so we can live comfortably and have a future filled with opportunities. That kind of love and dedication is something we can never truly repay, but we carry deep gratitude for it every single day. You are our hero — not because of what you give us, but because of who you are: <span class="highlight">strong, selfless, loving, and endlessly kind</span>.<br><br>
+
+    On your special day, I just want to remind you how much we love and miss you. The house doesn’t feel the same without your laughter and warmth, but your spirit keeps us strong. We pray that you stay healthy, happy, and surrounded by good people who make your days brighter.<br><br>
+
+    We’re counting down the days until we can celebrate your birthday together again — with hugs, laughter, and all your favorite food. Until then, please know that you are <span class="highlight">deeply loved and appreciated</span>, more than words can ever say.<br><br>
+
+    Happy Birthday once again, Dad. 🎂🎈<br>
+    May God bless you abundantly and fill your heart with peace, love, and joy today and always. ❤️
+  </div>
+
+  <!-- Audio -->
+  <audio id="bgMusic" loop>
+    <source src="happy.mp3" type="audio/mpeg">
+  </audio>
+  <script>
+  const photoFilenames = [
+    'pic1.jpeg',
+    'pic2.jpeg',
+    'pic3.jpeg',
+    'pic4.jpeg',
+    'pic5.jpeg',
+    'pic6.jpeg',
+    'pic7.jpeg',
+    'pic8.jpeg'
+  ];
+
+  // Hearts
+  const heartsContainer = document.getElementById('hearts');
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDelay = Math.random() * 10 + 's';
+    heartsContainer.appendChild(heart);
+  }
+
+  // Slideshow
+  const slideshow = document.getElementById('slideshow');
+  photoFilenames.forEach(filename => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.style.backgroundImage = `url(photos/${filename})`;
+    slideshow.appendChild(slide);
+  });
+
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  function showSlide(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    if (slides[n]) slides[n].classList.add('active');
+  }
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }, 6000);
+  showSlide(0);
+
+  // === RISE + STOP + SCROLLABLE (FINAL) ===
+  function startExperience() {
+    const music = document.getElementById('bgMusic');
+    try {
+      music.volume = 0.45;
+      music.play().catch(e => console.log("Autoplay blocked, continuing..."));
+    } catch (e) {
+      console.log("Music play failed, proceeding.");
+    }
+
+    document.getElementById('hero').style.display = 'none';
+    const msg = document.getElementById('floating-message');
+    msg.style.display = 'block';
+    msg.style.pointerEvents = 'auto';
+
+    // Animate from bottom
+    let start = null;
+    const duration = 4000;
+    const startPos = -100; // start off-screen
+    const endPos = 15;     // stop 15vh from bottom
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 2);
+      const pos = startPos + (endPos - startPos) * ease;
+      msg.style.bottom = `${pos}vh`;
+      msg.style.opacity = Math.min(progress * 1.5, 1);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+</script>
+</body>
+</html>
